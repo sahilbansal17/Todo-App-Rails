@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-# Task Model
-class Task < ApplicationRecord
+class TodoList < ApplicationRecord
   has_many :todo_items
 end
