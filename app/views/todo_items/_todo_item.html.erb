@@ -21,7 +21,15 @@
       <i class="fa fa-circle-thin"></i>
     </div>
     <div class="todo_item">
-      <p><%= todo_item.content %></p>
+      <p>
+        <%= todo_item.content %>
+        <% if todo_item.priority == 3 %>!!!<% end %>
+        <% if todo_item.priority == 2 %>!<% end %>
+        <% if todo_item.priority == 1 %><% end %>
+      </p>
+      <% unless todo_item.due_at.nil? %>
+        <p>Due by:<%= todo_item.try(:due_at).strftime(" %A, %d %B %H:%M")  %> </p>
+      <% end %>
     </div>
     <div class="trash">
       <%= link_to todo_list_todo_item_path(@todo_list, todo_item.id), 
