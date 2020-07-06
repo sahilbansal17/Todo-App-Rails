@@ -2,6 +2,7 @@
   <% if todo_item.completed? %>
     <div class="complete">
       <%= link_to "Mark as Incomplete", incomplete_todo_list_todo_item_path(@todo_list, todo_item.id), 
+      <%= link_to "Mark as Complete", complete_todo_list_todo_item_path(@todo_list, todo_item.id), 
       method: :patch %>
       <i style="opacity: 0.4;" class="fa fa-check"></i>
     </div>
@@ -30,6 +31,7 @@
       <% unless todo_item.due_at.nil? %>
         <p>Due by:<%= todo_item.try(:due_at).strftime(" %A, %d %B %H:%M")  %> </p>
       <% end %>
+      <p><%= todo_item.content %></p>
     </div>
     <div class="trash">
       <%= link_to todo_list_todo_item_path(@todo_list, todo_item.id), 
