@@ -1,6 +1,7 @@
 <div class="row clearfix">
   <% if todo_item.completed? %>
     <div class="complete">
+      <%= link_to "Mark as Incomplete", incomplete_todo_list_todo_item_path(@todo_list, todo_item.id), 
       <%= link_to "Mark as Complete", complete_todo_list_todo_item_path(@todo_list, todo_item.id), 
       method: :patch %>
       <i style="opacity: 0.4;" class="fa fa-check"></i>
@@ -21,6 +22,15 @@
       <i class="fa fa-circle-thin"></i>
     </div>
     <div class="todo_item">
+      <p>
+        <%= todo_item.content %>
+        <% if todo_item.priority == 3 %>!!!<% end %>
+        <% if todo_item.priority == 2 %>!<% end %>
+        <% if todo_item.priority == 1 %><% end %>
+      </p>
+      <% unless todo_item.due_at.nil? %>
+        <p>Due by:<%= todo_item.try(:due_at).strftime(" %A, %d %B %H:%M")  %> </p>
+      <% end %>
       <p><%= todo_item.content %></p>
     </div>
     <div class="trash">
